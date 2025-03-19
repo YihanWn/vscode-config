@@ -1,0 +1,202 @@
+{
+    // ---------------------- panel --------------------------
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "window.menuBarVisibility": "compact",
+    // ---------------------- theme --------------------------
+    "workbench.colorTheme": "Tokyo Night Storm",
+    // ---------------------- editor -------------------------
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontFamily": "JetBrains Mono, Consolas, '宋体', monospace",
+    "files.encoding": "utf8",
+    "editor.fontWeight": "normal",
+    "editor.smoothScrolling": true, //使编辑器滚动变平滑
+    "editor.cursorSmoothCaretAnimation":"on", //光标开启平滑插入动画
+    "editor.cursorBlinking": "smooth",//使编辑器光标的闪烁平滑，有呼吸感
+    "terminal.integrated.cursorBlinking": true,//终端光标闪烁
+    "editor.renderControlCharacters": true,//编辑器中显示不可见的控制字符
+    "terminal.integrated.rightClickBehavior": "default",//在终端中右键时显示菜单而不是粘贴（个人喜好）
+    "debug.showBreakpointsInOverviewRuler": true,//在滚动条标尺上显示断点的位置，便于查找断点的位置
+    // ---------------------- terminal -----------------------
+   "terminal.integrated.persistentSessionScrollback": 500000,
+    "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+
+    // ------------- Plugins -------------
+    // ---------------------- AI -----------------------------
+    "fittencode.languagePreference.displayPreference": "zh-cn",
+    "fittencode.languagePreference.commentPreference": "zh-cn",
+    // ---------------------- SSH ----------------------------
+    "remote.SSH.remotePlatform": {
+        "124.16.70.19": "linux",
+        "ict.lgyserver.top": "linux",
+        "10.13.150.11": "linux",
+        "ict-GPU": "linux"
+    },
+    // ------------------- formatter -------------------------
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        // "editor.formatOnSave":
+    },
+    "black-formatter.args": ["--line-length", "150"],
+    // ---------------------- Python LSP ---------------------
+    "python.analysis.diagnosticMode": "workspace", // 检查整个工作区
+    "python.analysis.autoSearchPaths": true,       // 自动搜索 Python 路径
+    "python.analysis.extraPaths": ["./"],          // 添加当前文件夹为额外搜索路径
+    "python.analysis.indexing": true,              // 启用索引功能
+    // ---------------------- cmake ----------------------
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    // ------------------- error lens ------------------------
+    "errorLens.enabled": true,
+    "errorLens.followCursor": "closestProblem",
+    // ---------------------- vim ----------------------------
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.usectrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.highlightedyank.color": "rgba(230, 97, 89, 0.7)",
+    "vim.highlightedyank.textColor": "white",
+    "vim.highlightedyank.enable": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        },
+    ],
+    "vim.visualModeKeyBindings": [  // 递归映射，这些映射可以继续使用，触发其他映射
+        // visual mode 下复制粘贴，剪切，复制还可以用
+        {
+            "before": ["<C-x>"],
+            "commands": ["editor.action.clipboardCutAction"]
+        },
+        {
+            "before": ["<C-v>"],
+            "commands": ["editor.action.clipboardPasteAction"]
+        },
+        {
+            "before": ["<BS>"],
+            "commands": ["deleteLeft"]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [  // 不会再经过其他映射的再转换
+        // ---------------------- Editor ------------------------
+        // 通过 shift + J/K 光标翻页, 需要覆盖掉原来的 shift + j/k
+        {
+            "before": ["J"],
+            "commands": ["cursorPageDown"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["cursorPageUp"]
+        },
+        // 原本重新映射了一下ctrl+w关闭当前 editor，但是设置了vim移动窗口为 ctrl+w h/j/k/l 所以不能使用 ctrl+w 来关闭窗口
+        {
+            "before": ["<leader>", "w"],
+            "commands": [":w!"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": [":q!"]
+        },
+        {
+            "before": ["<leader>", "w", "q"],
+            "commands": [":wq!"]
+        },
+        // gd 跳转定义，原本 ctrl + o 为跳转返回，感觉不方便，改为 gb (go back)
+        {
+            "before": ["g", "b"],
+            "commands": ["workbench.action.navigateBack"]
+        },
+
+        // ---------------------- Tabline ----------------------
+        // 通过 shift + H 移动 tab
+        {
+            "before": ["<S-H>"],
+            "commands": [":tabp"]
+        },
+        // 通过 shift + L 移动 tab
+        {
+            "before": ["<S-L>"],
+            "commands": [":tabn"]
+        },
+
+        // ---------------------- Window ------------------------
+        // 水平分割（向右分割）
+        {
+            "before": ["<leader>", "s", "v"],
+            "commands": ["workbench.action.splitEditorRight"]
+        },
+        // 垂直分割（向下分割）
+        {
+            "before": ["<leader>", "s", "v"],
+            "command": "workbench.action.splitEditorDown"
+        },
+
+        // ---------------------- Search ------------------------
+        // 搜索相关，使用 <leader>sf 搜索文件
+        {
+            "before": ["<leader>", "s", "f"],
+            "commands": ["workbench.action.quickOpenNavigatePreviousInFilePicker"]
+        },
+        // ace jump mode
+        // {
+        //     "before": ["s"],
+        //     "command": "extension.aceJump.multiChar"
+        // },
+        {
+            "before": ["s"],
+            "commands": ["flash-vscode.start"]
+        },
+        {
+            "before": ["S"],
+            "commands": ["flash-vscode.startSelection"]
+        }, 
+        {
+            "before": [ "<BS>" ],
+            "commands": [ "flash-vscode.backspace" ]
+        },
+        // 取消高亮搜索
+        {
+            "before": ["<C-n>"],
+            "commands": [":nohl"]
+        },
+
+        // ---------------------- Terminal ----------------------
+        // 由 editor 转到 terminal
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.terminal.focus"]
+        },
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-b>": false,
+        "<C-p>": false,
+        // 插件会 ctrl v 将 visual mode 进入 visual block 模式，这里禁用掉，使用 ctrl v 在 visual mode 下粘贴
+        "<C-v>": false,
+    },
+    // To improve performance
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1,
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vim.smartRelativeLine": true,
+
+    // ------ Vscode animations + custon css and JS Loader --------
+    "vscode_custom_css.imports": [
+        "file:///Users/yihanwang/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+    ],
+    "animations.Install-Method": "Custom CSS and JS",
+    "animations.CursorAnimation": true,
+    "animations.CursorAnimationOptions": {
+        "TrailLength": 2
+    },
+    "gitlens.graph.minimap.enabled": false,
+    "git.ignoreLegacyWarning": true, // cursor animations
+}

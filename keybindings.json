@@ -1,0 +1,241 @@
+// Place your key bindings in this file to override the defaults
+[
+    // -------------------- Editor ------------------------
+    // move cursor to down group
+    { 
+		"key": "ctrl+j",
+		"command": "vim.remap",
+		"when": "vim.mode == 'Normal' && !suggestWidgetVisible && !inQuickOpen", "args": {
+			"after": [
+				"<c-w>",
+				"j"
+			],
+		}
+	},
+    // move cursor to above group
+	{ 
+		"key": "ctrl+k",
+		"command": "vim.remap",
+		"when": "vim.mode == 'Normal' && !suggestWidgetVisible && !inQuickOpen && !panelFocus",
+		"args": {
+			"after": [
+				"<c-w>",
+				"k"
+			],
+		}
+	},
+    // move cursor to left group
+	{ 
+		"key": "ctrl+h",
+		"command": "vim.remap",
+		"when": "vim.mode == 'Normal' && !suggestWidgetVisible && !inQuickOpen && !panelFocus",
+		"args": {
+			"after": [
+				"<c-w>",
+				"h"
+			],
+		}
+	},
+    // move cursor to right group
+	{ 
+		"key": "ctrl+l",
+		"command": "vim.remap",
+		"when": "vim.mode == 'Normal' && !suggestWidgetVisible && !inQuickOpen",
+		"args": {
+			"after": [
+				"<c-w>",
+				"l"
+			],
+		}
+	},
+    // 将光标移动回编辑器
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.focusFirstEditorGroup",
+    },
+    // 上/下添加多光标，主要配合vim使用，vim normal mode 下配置不起作用 
+    {
+        "key": "shift+alt+j",
+        "command": "editor.action.insertCursorBelow",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "shift+alt+k",
+        "command": "editor.action.insertCursorAbove",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    // 移动当前标签页到左侧编辑组
+    {
+        "key": "ctrl+shift+h",
+        "command": "workbench.action.moveEditorToLeftGroup",
+        "when": "editorTextFocus"
+    },
+    // 移动当前标签页到下方编辑组
+    {
+        "key": "ctrl+shift+j",
+        "command": "workbench.action.moveEditorToBelowGroup",
+        "when": "editorTextFocus"
+    },
+    // 移动当前标签页到上方编辑组
+    {
+        "key": "ctrl+shift+k",
+        "command": "workbench.action.moveEditorToAboveGroup",
+        "when": "editorTextFocus"
+    },
+    // 移动当前标签页到右侧编辑组
+    {
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.moveEditorToRightGroup",
+        "when": "editorTextFocus"
+    },
+    // 移动编辑组分界线
+    // vscode 使用 ctrl + shift + 上/下/左/右 按照行/单词选中时，vim 插件并不会进入visual mode（鼠标会），
+    // 所以visual mode 下的快捷键不能用，比较矛盾，所以这里把ctrl + shift + 上/下/左/右修改为移动编辑组的分界线
+    // vscode 给的命令只有放大/缩小
+    {
+        "key": "ctrl+shift+up",
+        "command": "-cursorUpSelect",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "-cursorDownSelect",
+        "when": "textInputFocus"
+    },
+
+    // ctrl + Shift + 上箭头 调整编辑组大小向上
+    {
+        "key": "ctrl+shift+up",
+        "command": "workbench.action.increaseViewSize",
+        "when": "editorTextFocus"
+    },
+    // ctrl + Shift + 下箭头 调整编辑组大小向下
+    {
+        "key": "ctrl+shift+down",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "editorTextFocus"
+    },
+
+    // -------------------- Window ------------------------
+    // alt + m toggle menu bar
+    {
+        "key": "alt+m",
+        "command": "workbench.action.toggleMenuBar"
+    },
+    // alt + e toggle activity bar
+    {
+        "key": "alt+e",
+        "command": "workbench.action.toggleActivityBarVisibility",
+    },
+    // ctrl + b toggle side bar
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility",
+    },
+
+    // -------------------- File Explorer ------------------------
+    // ctrl + e open side bar
+    {  // 再次按下将光标移到文件资源管理器
+        "key": "ctrl+e",
+        "command": "workbench.files.action.focusFilesExplorer",
+    }, {  // 再次按下将关闭侧边栏
+            "key": "ctrl+e",
+            "command": "workbench.action.closeSidebar",
+            "when": "explorerViewletFocus"
+        },
+        {
+            "key": "a",
+            "command": "explorer.newFile",
+            "when": "filesExplorerFocus && !inputFocus"
+        },
+        {
+            "key": "r",
+            "command": "renameFile",
+            "when": "filesExplorerFocus && !inputFocus"
+        },
+        {
+            "key": "y",
+            "command": "filesExplorer.copy",
+            "when": "filesExplorerFocus && !inputFocus"
+        },
+        {
+            "key": "p",
+            "command": "filesExplorer.paste",
+            "when": "filesExplorerFocus && !inputFocus"
+        },
+        {
+            "key": "d",
+            "command": "deleteFile",
+            "when": "filesExplorerFocus && !inputFocus"
+        },
+
+    // -------------------- search ------------------------
+    // ctrl + shift + f global grep   
+    // ctrl + enter, open file in editor
+    {
+        "key": "ctrl+enter",
+        "command": "search.action.openInEditor",
+        "when": "hasSearchResult && searchViewletFocus"
+    },
+
+    // -------------------- Terminal ------------------------
+    // 添加一个新终端
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalFocus"
+    },
+    // 使用 ctrl + W 关闭当前终端
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    // 切换到上一个终端：ctrl + 上箭头
+    {
+        "key": "ctrl+up",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    // 切换到下一个终端：ctrl + 下箭头
+    {
+        "key": "ctrl+down",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    // -------------------- remove origin keymap -----------------
+    // 去掉 ctrl+h 替换快捷键，与 vim 切换窗格冲突
+    {
+        "key": "ctrl+h",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "alt+enter",
+        "command": "-search.action.openInEditor",
+        "when": "hasSearchResult && searchViewletFocus"
+    },
+    // 取消使用 ctrl+shift+h 替换快捷键，将其映射为将当前标签页移动到左边窗口
+    {
+        "key": "ctrl+shift+h",
+        "command": "-workbench.action.replaceInFiles"
+    },
+    // 取消使用 ctrl+shift+j 替换快捷键，将其映射为将当前标签页移动到下边窗口
+    {
+        "key": "ctrl+shift+j",
+        "command": "-workbench.action.search.toggleQueryDetails",
+        "when": "inSearchEditor || searchViewletFocus"
+    },
+    // 取消使用 ctrl+shift+k 替换快捷键，将其映射为将当前标签页移动到上边窗口
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    // 取消使用 ctrl+shift+l 替换快捷键，将其映射为将当前标签页移动到右边窗口
+    {
+        "key": "ctrl+shift+l",
+        "command": "-selectAllSearchEditorMatches",
+        "when": "inSearchEditor"
+    },
+]
